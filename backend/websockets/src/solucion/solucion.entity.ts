@@ -11,12 +11,14 @@ export class SolucionEntity{
         length: 50,
     })
     personInCharge: string;
+
     @Column({
         name: "solucion",
         type: 'varchar',
         length: 50,
     })
     solution: string;
+
     @OneToOne(
         () => ReporteEntity,
         reporte => reporte.solution,

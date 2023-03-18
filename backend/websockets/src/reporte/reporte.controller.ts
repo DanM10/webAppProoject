@@ -40,6 +40,7 @@ export class ReporteController{
         newReporte.actualState = reporte.actualState;
         newReporte.date = reporte.date;
         newReporte.priority = reporte.priority;
+        newReporte.user = reporte.user;
         const errors = await validate(newReporte);
         if(errors.length > 0){
             console.error(errors);

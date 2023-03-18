@@ -38,6 +38,7 @@ export class SolucionController{
         const newSolucion = new SolucionCreateDto();
         newSolucion.solution = solucion.solution;
         newSolucion.personInCharge = solucion.personInCharge;
+        newSolucion.report = solucion.report;
         const errors = await validate(newSolucion);
         if(errors.length > 0){
             console.error(errors);
