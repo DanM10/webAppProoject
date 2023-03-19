@@ -1,4 +1,5 @@
-import {IsDateString, IsNotEmpty, IsNumber, IsString} from "class-validator";
+import {IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString} from "class-validator";
+import {SolucionEntity} from "../../solucion/solucion.entity";
 
 export class ReporteCreateDto {
     @IsNotEmpty()
@@ -25,4 +26,6 @@ export class ReporteCreateDto {
     @IsNumber()
     user: number;
 
+    @IsOptional()
+    solution: SolucionEntity;
 }

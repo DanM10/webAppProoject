@@ -2,7 +2,6 @@ import {Injectable} from "@nestjs/common";
 import {InjectRepository} from "@nestjs/typeorm";
 import {ReporteEntity} from "./reporte.entity";
 import {Repository} from "typeorm";
-import {ReporteCreateDto} from "./dto/reporte-create";
 import {ReporteUpdateDto} from "./dto/reporte-update";
 
 @Injectable()
@@ -14,7 +13,7 @@ export class ReporteService{
 
     findAll(): Promise<ReporteEntity[]>{
         return this._reporteRepository.find({
-            relations: ['solution','user']
+            relations: ['solution','user','noticia']
         });
     }
     findOneById(id: number): Promise<ReporteEntity>{
@@ -22,7 +21,7 @@ export class ReporteService{
             where: {
                 id: id
             },
-            relations: ['solution','user']
+            relations: ['solution','user','noticia']
         });
     }
 
