@@ -9,5 +9,5 @@ import {WebSocketGateway} from "@nestjs/websockets";
     }
 )
 export class EventosGateway{
-    
+
 }
