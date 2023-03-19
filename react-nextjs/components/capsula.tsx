@@ -1,9 +1,10 @@
 import {PropsCapsula} from "../interfaces";
-import React from "react";
+import React, {useState} from "react";
 import Link from "next/link";
 import Head from "next/head";
 import {useForm} from "react-hook-form";
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+
 
 export default function (props:PropsCapsula){
 
@@ -19,9 +20,13 @@ export default function (props:PropsCapsula){
                 <header>
                     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
                         <Container>
-                            <Navbar.Brand href="#home">Bienvenido al sistema: {props.usuarioNombre}</Navbar.Brand>
+                            <Navbar.Brand >
+                                <div className={"fs-4"}>Bienvenido al sistema:</div>
+                                <div className={"fs-5"}> {props.usuario.name}</div>
+                                <div className={"fs-6"}>{props.usuario.email}</div>
+                            </Navbar.Brand>
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                            <Navbar.Collapse id="responsive-navbar-nav">
+                            <Navbar.Collapse id="responsive-navbar-nav" className={"ms-5"}>
                                 <Nav className="me-auto">
                                     <Nav.Link href="#features">Home</Nav.Link>
                                     <Nav.Link href="#pricing">Reportes</Nav.Link>
@@ -32,13 +37,13 @@ export default function (props:PropsCapsula){
                             </Navbar.Collapse>
                         </Container>
                     </Navbar>
-                    {props.usuarioNombre}
+
                 </header>
                 {props.children}
                 <footer>
                     <Container className={"text-center"}>
                         <hr />
-                        <h3>Ecuador-Quito</h3>
+                        <h3>Ecuador { props.usuario.location}</h3>
                         <p>Daniel Garrido</p>
                         <p>Daniela Romero</p>
                     </Container>

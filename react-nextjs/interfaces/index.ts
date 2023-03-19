@@ -20,5 +20,5 @@ export type report = {id:number,parroquia:String,descripcion:String,actualState:
 export type PropsCapsula ={
   children?: ReactNode
   title?:string
-  usuarioNombre?:string
+  usuario:users
 }
