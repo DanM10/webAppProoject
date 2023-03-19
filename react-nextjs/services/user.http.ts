@@ -1,4 +1,4 @@
-import {report, report2, users} from "../interfaces";
+import {noticia, report, report2, users} from "../interfaces";
 
 export async function getHttp(
     entidad:String,
@@ -18,4 +18,10 @@ export async function reportHttp(
     const url = `http://localhost:3030/reporte${id ? '/' + id :''}`;
     const respuesta = await fetch(url)
     return (await respuesta.json()) as report2
+}
+
+export async function noticiaHttp():Promise<noticia[]>{
+    const url = `http://localhost:3030/noticia`
+    const resp = await fetch(url)
+    return (await resp.json()) as noticia[]
 }

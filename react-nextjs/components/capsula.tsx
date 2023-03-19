@@ -28,7 +28,7 @@ export default function (props:PropsCapsula){
                             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                             <Navbar.Collapse id="responsive-navbar-nav" className={"ms-5"}>
                                 <Nav className="me-auto">
-                                    <Nav.Link href="#features">Home</Nav.Link>
+                                    <Nav.Link href="/user">Home</Nav.Link>
                                     <Nav.Link href="#pricing">Reportes</Nav.Link>
                                 </Nav>
                                 <Nav>
