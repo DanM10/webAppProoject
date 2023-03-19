@@ -32,7 +32,7 @@ export default function (props:PropsCapsula){
                                     <Nav.Link href="#pricing">Reportes</Nav.Link>
                                 </Nav>
                                 <Nav>
-                                    <Nav.Link href="#deets">Noticias</Nav.Link>
+                                    <Nav.Link href="/noticia">Noticias</Nav.Link>
                                 </Nav>
                             </Navbar.Collapse>
                         </Container>

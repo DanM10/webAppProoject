@@ -13,7 +13,7 @@ export class NoticiaService{
 
     findAll(): Promise<NoticiaEntity[]>{
         return this._noticiaRepository.find({
-            relations: ['reporteNoticia']
+
         });
     }
     findOneById(id: number): Promise<NoticiaEntity>{
