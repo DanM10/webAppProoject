@@ -1,7 +1,12 @@
 import {GetStaticPaths, GetStaticProps} from "next";
-import {getHttp} from "../../services/user.http";
-import {User, users} from "../../interfaces";
+import {getHttp, reportHttp} from "../../services/user.http";
+import {report, report2, User, users} from "../../interfaces";
 import Capsula from "../../components/capsula";
+import {Accordion, Button, Card, useAccordionButton} from "react-bootstrap";
+import { FaBeer } from "react-icons/fa";
+import {ReactNode, useEffect, useState} from "react";
+import CustomToggle from "../../components/CustomToggle";
+
 
 
 interface parametrosUser{
@@ -11,10 +16,55 @@ interface parametrosUser{
 
 export default function (params:parametrosUser){
         const usuario = params.users
+        const reportesSinSolucion = params.users.reports
+        const [arregloReportes,setArreglo] = useState([] as report2[])
+
+    useEffect(
+        ()=>{
+            consultarSoluciones()
+
+        },[]
+    )
+
+    const consultarSoluciones = async () => {
+            reportesSinSolucion.map(async (value, index, array)=>{
+                const valor = await reportHttp(value.id.toString()) as report2
+                setArreglo(prevState => [...prevState,valor])
+                
+            })
+
+        }
+
+
+
     return(
         <>
+            {console.log(arregloReportes.length)}
             <Capsula usuario={usuario}>
-                <>asdfsdf</>
+                <div className={"container text-center"}>
+                    <div className="row justify-content-md-center">
+                        <div className="col-md-auto my-3">
+                            <Accordion defaultActiveKey="0">
+                                <Card>
+                                    <Card.Header>
+                                        <CustomToggle eventKey="0">↓</CustomToggle>
+                                    </Card.Header>
+                                    <Accordion.Collapse eventKey="0">
+                                        <Card.Body></Card.Body>
+                                    </Accordion.Collapse>
+                                </Card>
+                                <Card>
+                                    <Card.Header>
+                                        <CustomToggle eventKey="1">Click me!</CustomToggle>
+                                    </Card.Header>
+                                    <Accordion.Collapse eventKey="1">
+                                        <Card.Body>Hello! I'm another body</Card.Body>
+                                    </Accordion.Collapse>
+                                </Card>
+                            </Accordion>
+                        </div>
+                    </div>
+                </div>
             </Capsula>
         </>
     )
