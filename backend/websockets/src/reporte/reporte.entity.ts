@@ -1,6 +1,7 @@
-import {Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn} from "typeorm";
 import {UsuarioEntity} from "../usuario/usuario.entity";
 import {SolucionEntity} from "../solucion/solucion.entity";
+import {NoticiaEntity} from "../noticia/noticia.entity";
 
 @Entity()
 export class ReporteEntity{
@@ -65,4 +66,13 @@ export class ReporteEntity{
         }
     )
     solution: SolucionEntity;
+
+    @OneToMany(
+        () => NoticiaEntity,
+        noticia => noticia.reporteNoticia,
+        {
+            onDelete: "SET NULL"
+        }
+    )
+    noticia: NoticiaEntity;
 }

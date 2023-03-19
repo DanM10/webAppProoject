@@ -8,19 +8,22 @@ import {SolucionEntity} from "./solucion/solucion.entity";
 import {SolucionModule} from "./solucion/solucion.module";
 import {UsuarioModule} from "./usuario/usuario.module";
 import {ReporteModule} from "./reporte/reporte.module";
+import {NoticiaEntity} from "./noticia/noticia.entity";
+import {NoticiaModule} from "./noticia/noticia.module";
 
 @Module({
   imports: [
       TypeOrmModule.forRoot({
           type: 'sqlite',
           database:'bdd/proyecto.sqlite',
-          entities: [SolucionEntity, UsuarioEntity, ReporteEntity],
+          entities: [SolucionEntity, UsuarioEntity, ReporteEntity, NoticiaEntity],
           synchronize: true,
           dropSchema: false,
       }),
       SolucionModule,
       UsuarioModule,
       ReporteModule,
+      NoticiaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
