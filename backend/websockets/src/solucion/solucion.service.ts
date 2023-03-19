@@ -22,7 +22,6 @@ export class SolucionService{
             where: {
                 id: id
             },
-            relations: ['report']
         });
     }
 
