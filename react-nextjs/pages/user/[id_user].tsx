@@ -16,8 +16,8 @@ interface parametrosUser{
 
 export default function (params:parametrosUser){
         const usuario = params.users
-        const [reportesSinSolucion,setReportesSinSolucion] = useState(params.users.reports)
-        const [arregloSoluciones,setArregloSoluciones] = useState(solucionArreglo)
+        const reportesSinSolucion = params.users.reports
+        const [arregloSoluciones2,setArregloSoluciones2] = useState([] as report2[])
 
     useEffect(
         ()=>{
@@ -26,13 +26,14 @@ export default function (params:parametrosUser){
     )
 
     const consultarSoluciones = async () => {
-            reportesSinSolucion.map(async (value, index, array)=>{
+            reportesSinSolucion.map(async (value, index)=>{
                 const valor = await reportHttp(value.id.toString()) as report2
-                //setArreglo(prevState => [...prevState,valor])
+                setArregloSoluciones2(prevState => [...prevState,valor])
             })
 
         }
 
+    console.log(arregloSoluciones2)
 
 
     return(
@@ -45,7 +46,7 @@ export default function (params:parametrosUser){
                     <div className="row justify-content-md-center">
                         <div className="col-md-auto my-3">
                             <Accordion >
-                                {reportesSinSolucion.map(
+                                {arregloSoluciones2.map(
                                     (val,index)=>{
                                         return (
                                             <Card>
@@ -61,9 +62,9 @@ export default function (params:parametrosUser){
                                             </Card.Header>
                                             <Accordion.Collapse eventKey={index.toString()}>
                                             <Card.Body><SolucionBody
-                                                id={arregloSoluciones[index].id}
-                                                personInCharge={arregloSoluciones[index].personInCharge}
-                                                solution={arregloSoluciones[index].solution}
+                                                id={val.solution.id}
+                                                personInCharge={val.solution.personInCharge}
+                                                solution={val.solution.solution}
                                             ></SolucionBody></Card.Body>
                                             </Accordion.Collapse>
                                             </Card>
@@ -98,7 +99,7 @@ export const getStaticPaths:GetStaticPaths = async (
 ) =>{
     //consultar ids validos
     const paths = []
-    const lista = [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
+    const lista = [1,2]
     lista.map(
         (soID) =>{
             paths.push({params:{id_user:soID.toString()}})
